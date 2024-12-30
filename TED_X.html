@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TED X</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar - Fixed */
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Logo with infinite pulse animation */
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Highlight active section */
+        nav ul li a.active {
+            background-color: #ff9900; /* Highlight color */
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Main Section */
+        .main-section {
+            display: flex;
+            width: 100%;
+            margin: 80px auto 20px;
+            height: 80vh;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Left Section */
+        .left-section {
+            width: 20%;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .left-option {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #444;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .left-option:hover {
+            background-color: #555;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            width: 80%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+        }
+
+        .middle-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .content-item h4 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .content-item p {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .content-item a {
+            text-decoration: none;
+            color: #ff9900;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (Fixed) -->
+    <nav>
+        <div class="logo" onclick="goToHome()">A³</div> <!-- Logo redirects to index.html -->
+        <ul>
+            <li><a href="Posts&Reels.html" class="nav-link">Posts & Reels</a></li>
+            <li><a href="TED_X.html" class="nav-link">TED X</a></li>
+            <li><a href="Tweet&Thread.html" class="nav-link">Tweet & Thread</a></li>
+            <li><a href="Chat.html" class="nav-link">Chat</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <div class="main-section">
+
+        <!-- Left Section -->
+        <div class="left-section">
+            <h3>Menu</h3>
+            <div class="left-option" onclick="loadContent('TED Talks')">TED Talks</div>
+            <div class="left-option" onclick="loadContent('Playlist')">Playlist</div>
+            <div class="left-option" onclick="loadContent('Series')">TED Series</div>
+            <div class="left-option" onclick="loadContent('TED-Ed')">TED-Ed</div>
+            <div class="left-option" onclick="loadContent('Idea Blogs')">Idea Blogs</div>
+            <div class="left-option" onclick="loadContent('Newsletters')">Newsletters</div>
+            <div class="left-option" onclick="loadContent('Games')">TED Games</div>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="middle-section" id="middle-section">
+            <div class="middle-content" id="middle-content">
+                <!-- Content for selected option will be loaded here -->
+                <h3>Welcome to TED X</h3>
+                <p>Select an option from the left menu to view its content.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to redirect to the index.html page when logo is clicked
+        function goToHome() {
+            window.location.href = 'home.html'; // Redirect to main page
+        }
+
+        // Dummy data for sections
+        const data = {
+            "TED Talks": [
+                { title: "The Future of AI", speaker: "Jane Doe", link: "#" },
+                { title: "Climate Change: Act Now", speaker: "John Smith", link: "#" },
+                { title: "Reimagining Education", speaker: "Sarah Lee", link: "#" }
+            ],
+            "Playlist": [
+                { title: "Leadership and Innovation", description: "Talks that inspire leaders.", link: "#" },
+                { title: "Breaking Barriers", description: "Stories of overcoming challenges.", link: "#" },
+                { title: "Health and Wellness", description: "Talks about mental and physical health.", link: "#" }
+            ],
+            "Series": [
+                { title: "Big Questions", description: "Answering the most profound questions.", link: "#" },
+                { title: "Small Things Matter", description: "Exploring the impact of small actions.", link: "#" }
+            ],
+            "TED-Ed": [
+                { title: "The Science of Happiness", link: "#" },
+                { title: "Why Do We Dream?", link: "#" }
+            ],
+            "Idea Blogs": [
+                { title: "How to Cultivate Creativity", link: "#" },
+                { title: "The Importance of Empathy in Leadership", link: "#" }
+            ],
+            "Newsletters": [
+                { title: "Weekly Highlights", description: "Top talks and ideas.", link: "#" },
+                { title: "Innovator's Digest", description: "Stay updated with innovations.", link: "#" }
+            ],
+            "Games": [
+                { title: "The Puzzle Challenge", description: "Test your critical thinking.", link: "#" },
+                { title: "Brain Teasers", description: "Sharpen your mind.", link: "#" }
+            ]
+        };
+
+        // Function to load content based on selected option
+        function loadContent(option) {
+            const middleContent = document.getElementById('middle-content');
+            middleContent.innerHTML = `<h3>${option}</h3>`;
+
+            if (data[option]) {
+                data[option].forEach(item => {
+                    middleContent.innerHTML += `
+                        <div class="content-item">
+                            <h4>${item.title}</h4>
+                            <p>${item.speaker || item.description || ""}</p>
+                            <a href="${item.link}">Learn more</a>
+                        </div>
+                    `;
+                });
+            } else {
+                middleContent.innerHTML += `<p>No content available for this section.</p>`;
+            }
+        }
+
+        // Function to highlight the current page's link
+        function highlightCurrentPage() {
+            const currentPage = window.location.pathname.split("/").pop(); // Get current file name
+            const navLinks = document.querySelectorAll('.nav-link'); // Get all nav links
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active'); // Add 'active' class to the matching link
+                } else {
+                    link.classList.remove('active'); // Remove 'active' from others
+                }
+            });
+        }
+
+        // Call highlightCurrentPage when the page loads
+        window.onload = highlightCurrentPage;
+
+    </script>
+
+</body>
+</html>

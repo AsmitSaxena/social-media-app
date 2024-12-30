@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .user-list {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .user-list p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .user-list .user {
+            font-weight: bold;
+            color: #444;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="user-list">
+            <h3>Available Users:</h3>
+            <p><span class="user">JohnDoe</span> - Password: 12345</p>
+            <p><span class="user">JaneSmith</span> - Password: abcde</p>
+            <p><span class="user">BobJohnson</span> - Password: password123</p>
+            <p><span class="user">AliceLee</span> - Password: qwerty</p>
+            <p><span class="user">CharlieBrown</span> - Password: 2024pass</p>
+        </div>
+    </div>
+
+    <script>
+        const users = {
+            "JohnDoe": { password: "12345", fullName: "John Doe", email: "johndoe@example.com" },
+            "JaneSmith": { password: "abcde", fullName: "Jane Smith", email: "janesmith@example.com" },
+            "BobJohnson": { password: "password123", fullName: "Bob Johnson", email: "bobjohnson@example.com" },
+            "AliceLee": { password: "qwerty", fullName: "Alice Lee", email: "alicelee@example.com" },
+            "CharlieBrown": { password: "2024pass", fullName: "Charlie Brown", email: "charliebrown@example.com" }
+        };
+
+        const loginForm = document.getElementById('loginForm');
+        const usernameField = document.getElementById('username');
+        const passwordField = document.getElementById('password');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = usernameField.value;
+            const password = passwordField.value;
+
+            if (users[username] && users[username].password === password) {
+                // Store the user's data in localStorage
+                localStorage.setItem('loggedInUser', JSON.stringify(users[username]));
+
+                // Redirect to index.html
+                window.location.href = 'home.html';
+            } else {
+                alert('Invalid username or password');
+            }
+
+            // Clear the form
+            usernameField.value = '';
+            passwordField.value = '';
+        });
+    </script>
+
+</body>
+</html>

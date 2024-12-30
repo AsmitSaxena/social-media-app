@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet & Thread</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Bar - Fixed */
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Logo with infinite pulse animation */
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0 auto;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Highlight active section */
+        nav ul li a.active {
+            background-color: #ff9900; /* Highlight color */
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Main Section */
+        .main-section {
+            display: flex;
+            width: 100%;
+            margin: 80px auto 20px; /* Adjusted for fixed navbar */
+            height: 80vh;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Left Section */
+        .left-section {
+            width: 20%;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .left-option {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #444;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .left-option:hover {
+            background-color: #555;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            width: 80%; /* Adjusted since there's no right section */
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .middle-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (Fixed) -->
+    <nav>
+        <div class="logo" onclick="goToHome()">A³</div> <!-- Logo redirects to index.html -->
+        <ul>
+            <li><a href="Posts&Reels.html" class="nav-link">Posts & Reels</a></li>
+            <li><a href="TED_X.html" class="nav-link">TED X</a></li>
+            <li><a href="Tweet&Thread.html" class="nav-link">Tweet & Thread</a></li>
+            <li><a href="Chat.html" class="nav-link">Chat</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <div class="main-section">
+
+        <!-- Left Section -->
+        <div class="left-section">
+            <h3>Menu</h3>
+            <div class="left-option" onclick="loadContent('Profile')">Profile</div>
+            <div class="left-option" onclick="loadContent('Search')">Search</div>
+            <div class="left-option" onclick="loadContent('Notification')">Notification</div>
+            <div class="left-option" onclick="loadContent('Create')">Create</div>
+            <div class="left-option" onclick="loadContent('Explore')">Explore</div>
+            <div class="left-option" onclick="loadContent('More')">More</div>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="middle-section" id="middle-section">
+            <div class="middle-content" id="middle-content">
+                <!-- Content for selected option will be loaded here -->
+                <h3>Welcome to Tweet & Thread</h3>
+                <p>Select an option from the left menu to view its content.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to redirect to the index.html page when logo is clicked
+        function goToHome() {
+            window.location.href = 'home.html'; // Redirect to main page
+        }
+
+        // Function to load content based on selected option
+        function loadContent(option) {
+            const middleContent = document.getElementById('middle-content');
+            let content = '';
+
+            switch (option) {
+                case 'Profile':
+                    content = `<h3>Profile</h3>
+                               <p>Name: Jane Doe</p>
+                               <p>Followers: 1.2k</p>
+                               <p>Following: 345</p>`;
+                    break;
+                case 'Search':
+                    content = `<h3>Search</h3>
+                               <p>Popular hashtags: #Tech, #Health, #AI, #Startups</p>
+                               <ul><li>#Learning</li><li>#Innovation</li><li>#Community</li></ul>`;
+                    break;
+                case 'Notification':
+                    content = `<h3>Notifications</h3>
+                               <ul><li>New follower: @john_doe</li><li>Mention: "Great article by @jane_doe"</li></ul>`;
+                    break;
+                case 'Create':
+                    content = `<h3>Create</h3>
+                               <p>Share your thoughts:</p>
+                               <textarea rows="5" cols="30"></textarea>
+                               <button>Post</button>`;
+                    break;
+                case 'Explore':
+                    content = `<h3>Explore</h3>
+                               <p>Trending topics:</p>
+                               <ul><li>AI Revolution</li><li>Global Warming</li><li>Space Exploration</li></ul>`;
+                    break;
+                case 'More':
+                    content = `<h3>More</h3>
+                               <p>Additional features coming soon!</p>`;
+                    break;
+                default:
+                    content = `<h3>${option}</h3><p>Content for ${option} will be displayed here.</p>`;
+            }
+
+            middleContent.innerHTML = content;
+        }
+
+        // Function to highlight the current page's link
+        function highlightCurrentPage() {
+            const currentPage = window.location.pathname.split("/").pop(); // Get current file name
+            const navLinks = document.querySelectorAll('.nav-link'); // Get all nav links
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active'); // Add 'active' class to the matching link
+                } else {
+                    link.classList.remove('active'); // Remove 'active' from others
+                }
+            });
+        }
+
+        // Call highlightCurrentPage when the page loads
+        window.onload = highlightCurrentPage;
+
+    </script>
+
+</body>
+</html>
